@@ -35,10 +35,10 @@ describe('Usage example', () => {
 
   // matches
   const defaults = end
-  const home = lit('home').then(end)
-  const userId = lit('users').then(int('userId'))
-  const user = userId.then(end)
-  const invoice = userId.then(lit('invoice')).then(int('invoiceId')).then(end)
+  const home = lit('home').and(end)
+  const userId = lit('users').and(int('userId'))
+  const user = userId.and(end)
+  const invoice = userId.and(lit('invoice')).and(int('invoiceId')).and(end)
 
   // router
   const router = zero<Location>()

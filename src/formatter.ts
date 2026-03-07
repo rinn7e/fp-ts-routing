@@ -25,7 +25,7 @@ export class Formatter<A> {
   /**
    * @since 0.4.0
    */
-  then<B>(that: Formatter<B> & Formatter<RowLacks<B, keyof A>>): Formatter<A & B> {
+  and<B>(that: Formatter<B> & Formatter<RowLacks<B, keyof A>>): Formatter<A & B> {
     return new Formatter((r, ab) => that.run(this.run(r, ab), ab))
   }
 }
@@ -62,10 +62,10 @@ export const contramap =
  * @category formatters
  * @since 0.6.0
  */
-export const then =
+export const and =
   <B>(fb: Formatter<B>) =>
   <A>(fa: Formatter<A> & Formatter<RowLacks<A, keyof B>>): Formatter<A & B> =>
-    fa.then(fb as any)
+    fa.and(fb as any)
 
 /**
  * @category formatters

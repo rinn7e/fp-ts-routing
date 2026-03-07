@@ -15,12 +15,12 @@ Added in v0.6.0
 - [formatters](#formatters)
   - [Formatter (class)](#formatter-class)
     - [contramap (method)](#contramap-method)
-    - [then (method)](#then-method)
+    - [and (method)](#and-method)
     - [\_A (property)](#_a-property)
+  - [and](#and)
   - [contramap](#contramap)
   - [format](#format)
   - [formatter](#formatter)
-  - [then](#then)
 
 ---
 
@@ -48,12 +48,12 @@ contramap<B>(f: (b: B) => A): Formatter<B>
 
 Added in v0.4.0
 
-### then (method)
+### and (method)
 
 **Signature**
 
 ```ts
-then<B>(that: Formatter<B> & Formatter<RowLacks<B, keyof A>>): Formatter<A & B>
+and<B>(that: Formatter<B> & Formatter<RowLacks<B, keyof A>>): Formatter<A & B>
 ```
 
 Added in v0.4.0
@@ -67,6 +67,18 @@ readonly _A: A
 ```
 
 Added in v0.4.0
+
+## and
+
+**Signature**
+
+```ts
+export declare const and: <B>(
+  fb: Formatter<B>
+) => <A>(fa: Formatter<A> & Formatter<RowLacks<A, keyof B>>) => Formatter<A & B>
+```
+
+Added in v0.6.0
 
 ## contramap
 
@@ -97,15 +109,3 @@ export declare const formatter: Contravariant1<'fp-ts-routing/Formatter'>
 ```
 
 Added in v0.5.1
-
-## then
-
-**Signature**
-
-```ts
-export declare const then: <B>(
-  fb: Formatter<B>
-) => <A>(fa: Formatter<A> & Formatter<RowLacks<A, keyof B>>) => Formatter<A & B>
-```
-
-Added in v0.6.0

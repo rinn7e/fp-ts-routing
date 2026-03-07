@@ -43,7 +43,7 @@ describe('Match', () => {
       a: null,
       b: null
     })
-    const match = pipe(M.lit('search'), M.then(M.type('topic', T)))
+    const match = pipe(M.lit('search'), M.and(M.type('topic', T)))
 
     assert.deepStrictEqual(match.parser.run(Route.parse('/search/a')), O.some([{ topic: 'a' }, Route.empty]))
     assert.deepStrictEqual(match.parser.run(Route.parse('/search/b')), O.some([{ topic: 'b' }, Route.empty]))
@@ -100,9 +100,9 @@ describe('Match', () => {
     )
 
     const route = M.lit('accounts')
-      .then(M.str('accountId'))
-      .then(M.lit('files'))
-      .then(M.query(t.strict({ pathparam: t.string })))
+      .and(M.str('accountId'))
+      .and(M.lit('files'))
+      .and(M.query(t.strict({ pathparam: t.string })))
       .formatter.run(Route.empty, { accountId: 'testId', pathparam: '123' })
       .toString()
 

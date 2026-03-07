@@ -21,9 +21,9 @@ describe('format', () => {
 })
 
 describe('Formatter', () => {
-  it('then', () => {
-    const x = FORMATTER('username').then(FORMATTER('foo'))
-    const y = pipe(FORMATTER('username'), F.then(FORMATTER('foo')))
+  it('and', () => {
+    const x = FORMATTER('username').and(FORMATTER('foo'))
+    const y = pipe(FORMATTER('username'), F.and(FORMATTER('foo')))
 
     assert.strictEqual(F.format(x, { username: 'test', foo: 'bar' }), '/test/bar')
     assert.strictEqual(F.format(y, { username: 'test', foo: 'bar' }), '/test/bar')

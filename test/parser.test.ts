@@ -86,9 +86,9 @@ describe('Parser', () => {
     assert.deepStrictEqual(y.run(Route.parse('/c')), O.none)
   })
 
-  it('then', () => {
-    const x = LIT_A.then(LIT_B)
-    const y = pipe(LIT_A, P.then(LIT_B))
+  it('and', () => {
+    const x = LIT_A.and(LIT_B)
+    const y = pipe(LIT_A, P.and(LIT_B))
 
     assert.deepStrictEqual(x.run(Route.parse('/a/b')), O.some([{}, Route.empty]))
     assert.deepStrictEqual(x.run(Route.parse('/a/c')), O.none)

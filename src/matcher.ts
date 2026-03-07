@@ -32,8 +32,8 @@ export class Match<A> {
   /**
    * @since 0.4.0
    */
-  then<B>(that: Match<B> & Match<RowLacks<B, keyof A>>): Match<A & B> {
-    return new Match(this.parser.then(that.parser), this.formatter.then<B>(that.formatter))
+  and<B>(that: Match<B> & Match<RowLacks<B, keyof A>>): Match<A & B> {
+    return new Match(this.parser.and(that.parser), this.formatter.and<B>(that.formatter))
   }
 }
 
@@ -50,10 +50,10 @@ export const imap =
  * @category matchers
  * @since 0.5.1
  */
-export const then =
+export const and =
   <B>(mb: Match<B>) =>
   <A>(ma: Match<A> & Match<RowLacks<A, keyof B>>): Match<A & B> =>
-    ma.then(mb as any)
+    ma.and(mb as any)
 
 const singleton = <K extends string, V>(k: K, v: V): { [_ in K]: V } => ({ [k as any]: v } as any)
 
@@ -89,7 +89,7 @@ export const end: Match<{}> = new Match(
  *   b: null
  * })
  *
- * const match = lit('search').then(type('topic', T))
+ * const match = lit('search').and(type('topic', T))
  *
  * assert.deepStrictEqual(match.parser.run(Route.parse('/search/a')), some([{ topic: 'a' }, Route.empty]))
  * assert.deepStrictEqual(match.parser.run(Route.parse('/search/b')), some([{ topic: 'b' }, Route.empty]))
@@ -198,9 +198,9 @@ export const lit = (literal: string): Match<{}> =>
  * import { lit, str, query, Route } from 'fp-ts-routing'
  *
  * const route = lit('accounts')
- *   .then(str('accountId'))
- *   .then(lit('files'))
- *   .then(query(t.strict({ pathparam: t.string })))
+ *   .and(str('accountId'))
+ *   .and(lit('files'))
+ *   .and(query(t.strict({ pathparam: t.string })))
  *   .formatter.run(Route.empty, { accountId: 'testId', pathparam: '123' })
  *   .toString()
  *

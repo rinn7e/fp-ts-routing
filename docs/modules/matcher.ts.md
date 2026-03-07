@@ -16,8 +16,9 @@ Added in v0.6.0
   - [IntegerFromString](#integerfromstring)
   - [Match (class)](#match-class)
     - [imap (method)](#imap-method)
-    - [then (method)](#then-method)
+    - [and (method)](#and-method)
     - [\_A (property)](#_a-property)
+  - [and](#and)
   - [end](#end)
   - [imap](#imap)
   - [int](#int)
@@ -25,7 +26,6 @@ Added in v0.6.0
   - [query](#query)
   - [str](#str)
   - [succeed](#succeed)
-  - [then](#then)
   - [type](#type)
 
 ---
@@ -64,12 +64,12 @@ imap<B>(f: (a: A) => B, g: (b: B) => A): Match<B>
 
 Added in v0.4.0
 
-### then (method)
+### and (method)
 
 **Signature**
 
 ```ts
-then<B>(that: Match<B> & Match<RowLacks<B, keyof A>>): Match<A & B>
+and<B>(that: Match<B> & Match<RowLacks<B, keyof A>>): Match<A & B>
 ```
 
 Added in v0.4.0
@@ -83,6 +83,16 @@ readonly _A: A
 ```
 
 Added in v0.4.0
+
+## and
+
+**Signature**
+
+```ts
+export declare const and: <B>(mb: Match<B>) => <A>(ma: Match<A> & Match<RowLacks<A, keyof B>>) => Match<A & B>
+```
+
+Added in v0.5.1
 
 ## end
 
@@ -169,9 +179,9 @@ import * as t from 'io-ts'
 import { lit, str, query, Route } from 'fp-ts-routing'
 
 const route = lit('accounts')
-  .then(str('accountId'))
-  .then(lit('files'))
-  .then(query(t.strict({ pathparam: t.string })))
+  .and(str('accountId'))
+  .and(lit('files'))
+  .and(query(t.strict({ pathparam: t.string })))
   .formatter.run(Route.empty, { accountId: 'testId', pathparam: '123' })
   .toString()
 
@@ -214,16 +224,6 @@ export declare const succeed: <A>(a: A) => Match<A>
 
 Added in v0.4.0
 
-## then
-
-**Signature**
-
-```ts
-export declare const then: <B>(mb: Match<B>) => <A>(ma: Match<A> & Match<RowLacks<A, keyof B>>) => Match<A & B>
-```
-
-Added in v0.5.1
-
 ## type
 
 `type` matches any io-ts type path component
@@ -246,7 +246,7 @@ const T = t.keyof({
   b: null
 })
 
-const match = lit('search').then(type('topic', T))
+const match = lit('search').and(type('topic', T))
 
 assert.deepStrictEqual(match.parser.run(Route.parse('/search/a')), some([{ topic: 'a' }, Route.empty]))
 assert.deepStrictEqual(match.parser.run(Route.parse('/search/b')), some([{ topic: 'b' }, Route.empty]))

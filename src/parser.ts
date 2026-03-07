@@ -75,7 +75,7 @@ export class Parser<A> {
   /**
    * @since 0.4.0
    */
-  then<B>(that: Parser<RowLacks<B, keyof A>>): Parser<A & B> {
+  and<B>(that: Parser<RowLacks<B, keyof A>>): Parser<A & B> {
     return that.ap(this.map(assign as (a: A) => (b: B) => A & B))
   }
 }
@@ -209,10 +209,10 @@ export const map =
  * @category parsers
  * @since 0.6.0
  */
-export const then =
+export const and =
   <B>(fb: Parser<B>) =>
   <A>(fa: Parser<A> & Parser<RowLacks<A, keyof B>>): Parser<A & B> =>
-    fa.then(fb as any)
+    fa.and(fb as any)
 
 // --- Helpers
 const assign =

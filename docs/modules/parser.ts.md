@@ -19,9 +19,10 @@ Added in v0.6.0
     - [ap (method)](#ap-method)
     - [chain (method)](#chain-method)
     - [alt (method)](#alt-method)
-    - [then (method)](#then-method)
+    - [and (method)](#and-method)
     - [\_A (property)](#_a-property)
   - [alt](#alt)
+  - [and](#and)
   - [ap](#ap)
   - [apFirst](#apfirst)
   - [apSecond](#apsecond)
@@ -32,7 +33,6 @@ Added in v0.6.0
   - [map](#map)
   - [parse](#parse)
   - [parser](#parser)
-  - [then](#then)
   - [zero](#zero)
 
 ---
@@ -101,12 +101,12 @@ alt(that: Parser<A>): Parser<A>
 
 Added in v0.4.0
 
-### then (method)
+### and (method)
 
 **Signature**
 
 ```ts
-then<B>(that: Parser<RowLacks<B, keyof A>>): Parser<A & B>
+and<B>(that: Parser<RowLacks<B, keyof A>>): Parser<A & B>
 ```
 
 Added in v0.4.0
@@ -130,6 +130,16 @@ export declare const alt: <A>(that: Lazy<Parser<A>>) => (fa: Parser<A>) => Parse
 ```
 
 Added in v0.5.1
+
+## and
+
+**Signature**
+
+```ts
+export declare const and: <B>(fb: Parser<B>) => <A>(fa: Parser<A> & Parser<RowLacks<A, keyof B>>) => Parser<A & B>
+```
+
+Added in v0.6.0
 
 ## ap
 
@@ -230,16 +240,6 @@ export declare const parser: Monad1<'fp-ts-routing/Parser'> & Alternative1<'fp-t
 ```
 
 Added in v0.5.1
-
-## then
-
-**Signature**
-
-```ts
-export declare const then: <B>(fb: Parser<B>) => <A>(fa: Parser<A> & Parser<RowLacks<A, keyof B>>) => Parser<A & B>
-```
-
-Added in v0.6.0
 
 ## zero
 

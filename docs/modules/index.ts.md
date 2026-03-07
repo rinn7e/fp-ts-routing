@@ -22,6 +22,7 @@ Added in v0.4.0
 - [matchers](#matchers)
   - [IntegerFromString](#integerfromstring)
   - [Match](#match)
+  - [and](#and)
   - [end](#end)
   - [imap](#imap)
   - [int](#int)
@@ -29,7 +30,6 @@ Added in v0.4.0
   - [query](#query)
   - [str](#str)
   - [succeed](#succeed)
-  - [then](#then)
   - [type](#type)
 - [parsers](#parsers)
   - [Parser](#parser)
@@ -124,6 +124,16 @@ export declare const Match: typeof Match
 
 Added in v0.4.0
 
+## and
+
+**Signature**
+
+```ts
+export declare const and: <B>(mb: Match<B>) => <A>(ma: Match<A> & Match<RowLacks<A, keyof B>>) => Match<A & B>
+```
+
+Added in v0.5.1
+
 ## end
 
 **Signature**
@@ -193,16 +203,6 @@ export declare const succeed: <A>(a: A) => Match<A>
 ```
 
 Added in v0.4.0
-
-## then
-
-**Signature**
-
-```ts
-export declare const then: <B>(mb: Match<B>) => <A>(ma: Match<A> & Match<RowLacks<A, keyof B>>) => Match<A & B>
-```
-
-Added in v0.5.1
 
 ## type
 

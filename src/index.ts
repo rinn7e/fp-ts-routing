@@ -7,7 +7,7 @@
 
 import { contramap, format, Formatter, formatter } from './formatter'
 import { RowLacks } from './helpers'
-import { end, imap, int, IntegerFromString, lit, Match, query, str, succeed, then, type } from './matcher'
+import { end, imap, int, IntegerFromString, lit, Match, query, str, succeed, and, type } from './matcher'
 import {
   alt,
   ap,
@@ -132,7 +132,7 @@ export {
    * @category matchers
    * @since 0.5.1
    */
-  then,
+  and,
   /**
    * @category matchers
    * @since 0.4.0
