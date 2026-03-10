@@ -9,7 +9,7 @@ import { pipe } from 'fp-ts/lib/pipeable'
 import { failure, Int, string, success, Type } from 'io-ts'
 
 import { Formatter } from './formatter'
-import { RowLacks } from './helpers'
+import type { RowLacks } from './helpers'
 import { Parser } from './parser'
 import { QueryValues, Route } from './route'
 
@@ -22,7 +22,18 @@ export class Match<A> {
    * @since 0.4.0
    */
   readonly _A!: A
-  constructor(readonly parser: Parser<A>, readonly formatter: Formatter<A>) {}
+  /**
+   * @since 0.7.0
+   */
+  readonly parser: Parser<A>
+  /**
+   * @since 0.7.0
+   */
+  readonly formatter: Formatter<A>
+  constructor(parser: Parser<A>, formatter: Formatter<A>) {
+    this.parser = parser
+    this.formatter = formatter
+  }
   /**
    * @since 0.4.0
    */

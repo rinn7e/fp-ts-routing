@@ -18,6 +18,8 @@ Added in v0.6.0
     - [imap (method)](#imap-method)
     - [and (method)](#and-method)
     - [\_A (property)](#_a-property)
+    - [parser (property)](#parser-property)
+    - [formatter (property)](#formatter-property)
   - [and](#and)
   - [end](#end)
   - [imap](#imap)
@@ -48,7 +50,7 @@ Added in v0.4.2
 
 ```ts
 export declare class Match<A> {
-  constructor(readonly parser: Parser<A>, readonly formatter: Formatter<A>)
+  constructor(parser: Parser<A>, formatter: Formatter<A>)
 }
 ```
 
@@ -83,6 +85,26 @@ readonly _A: A
 ```
 
 Added in v0.4.0
+
+### parser (property)
+
+**Signature**
+
+```ts
+readonly parser: Parser<A>
+```
+
+Added in v0.7.0
+
+### formatter (property)
+
+**Signature**
+
+```ts
+readonly formatter: Formatter<A>
+```
+
+Added in v0.7.0
 
 ## and
 

@@ -19,6 +19,8 @@ Added in v0.6.0
     - [isEmpty (static method)](#isempty-static-method)
     - [parse (static method)](#parse-static-method)
     - [toString (method)](#tostring-method)
+    - [parts (property)](#parts-property)
+    - [query (property)](#query-property)
 
 ---
 
@@ -52,7 +54,7 @@ Added in v0.4.0
 
 ```ts
 export declare class Route {
-  constructor(readonly parts: Array<string>, readonly query: Query)
+  constructor(parts: Array<string>, query: Query)
 }
 ```
 
@@ -87,3 +89,23 @@ toString(encode: boolean = true): `/${string}`
 ```
 
 Added in v0.4.0
+
+### parts (property)
+
+**Signature**
+
+```ts
+readonly parts: string[]
+```
+
+Added in v0.7.0
+
+### query (property)
+
+**Signature**
+
+```ts
+readonly query: Query
+```
+
+Added in v0.7.0

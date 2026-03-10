@@ -17,8 +17,6 @@ Added in v0.4.0
   - [contramap](#contramap)
   - [format](#format)
   - [formatter](#formatter)
-- [helpers](#helpers)
-  - [RowLacks](#rowlacks)
 - [matchers](#matchers)
   - [IntegerFromString](#integerfromstring)
   - [Match](#match)
@@ -89,18 +87,6 @@ export declare const formatter: Contravariant1<'fp-ts-routing/Formatter'>
 ```
 
 Added in v0.5.1
-
-# helpers
-
-## RowLacks
-
-**Signature**
-
-```ts
-export declare const RowLacks: any
-```
-
-Added in v0.4.0
 
 # matchers
 

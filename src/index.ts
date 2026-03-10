@@ -6,7 +6,6 @@
 // Istanbul has some issues with re-exported symbols, so we temporarly ignore coverage only for this file
 
 import { contramap, format, Formatter, formatter } from './formatter'
-import { RowLacks } from './helpers'
 import { end, imap, int, IntegerFromString, lit, Match, query, str, succeed, and, type } from './matcher'
 import {
   alt,
@@ -24,15 +23,12 @@ import {
   zero
 } from './parser'
 
+import type { RowLacks } from './helpers'
+
 // --- Re-exports
 export * from './route'
 
 export {
-  /**
-   * @category helpers
-   * @since 0.4.0
-   */
-  RowLacks,
   /**
    * @category parsers
    * @since 0.4.0

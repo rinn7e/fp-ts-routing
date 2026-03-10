@@ -3,7 +3,7 @@
  */
 import { Contravariant1 } from 'fp-ts/lib/Contravariant'
 
-import { RowLacks } from './helpers'
+import type { RowLacks } from './helpers'
 import { Route } from './route'
 
 /**
@@ -15,7 +15,13 @@ export class Formatter<A> {
    * @since 0.4.0
    */
   readonly _A!: A
-  constructor(readonly run: (r: Route, a: A) => Route) {}
+  /**
+   * @since 0.7.0
+   */
+  readonly run: (r: Route, a: A) => Route
+  constructor(run: (r: Route, a: A) => Route) {
+    this.run = run
+  }
   /**
    * @since 0.4.0
    */

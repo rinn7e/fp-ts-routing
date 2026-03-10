@@ -21,6 +21,7 @@ Added in v0.6.0
     - [alt (method)](#alt-method)
     - [and (method)](#and-method)
     - [\_A (property)](#_a-property)
+    - [run (property)](#run-property)
   - [alt](#alt)
   - [and](#and)
   - [ap](#ap)
@@ -45,7 +46,7 @@ Added in v0.6.0
 
 ```ts
 export declare class Parser<A> {
-  constructor(readonly run: (r: Route) => O.Option<[A, Route]>)
+  constructor(run: (r: Route) => O.Option<[A, Route]>)
 }
 ```
 
@@ -120,6 +121,16 @@ readonly _A: A
 ```
 
 Added in v0.4.0
+
+### run (property)
+
+**Signature**
+
+```ts
+readonly run: (r: Route) => O.Option<[A, Route]>
+```
+
+Added in v0.7.0
 
 ## alt
 

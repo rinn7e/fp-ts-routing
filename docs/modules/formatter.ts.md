@@ -17,6 +17,7 @@ Added in v0.6.0
     - [contramap (method)](#contramap-method)
     - [and (method)](#and-method)
     - [\_A (property)](#_a-property)
+    - [run (property)](#run-property)
   - [and](#and)
   - [contramap](#contramap)
   - [format](#format)
@@ -32,7 +33,7 @@ Added in v0.6.0
 
 ```ts
 export declare class Formatter<A> {
-  constructor(readonly run: (r: Route, a: A) => Route)
+  constructor(run: (r: Route, a: A) => Route)
 }
 ```
 
@@ -67,6 +68,16 @@ readonly _A: A
 ```
 
 Added in v0.4.0
+
+### run (property)
+
+**Signature**
+
+```ts
+readonly run: (r: Route, a: A) => Route
+```
+
+Added in v0.7.0
 
 ## and
 

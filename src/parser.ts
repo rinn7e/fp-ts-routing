@@ -9,7 +9,7 @@ import * as O from 'fp-ts/lib/Option'
 // This `pipe` version is deprecated, but provided by `fp-ts` v2.0.1 and higher.
 import { pipe } from 'fp-ts/lib/pipeable'
 
-import { RowLacks } from './helpers'
+import type { RowLacks } from './helpers'
 import { Route } from './route'
 
 declare module 'fp-ts/lib/HKT' {
@@ -31,7 +31,13 @@ export class Parser<A> {
    * @since 0.4.0
    */
   readonly _A!: A
-  constructor(readonly run: (r: Route) => O.Option<[A, Route]>) {}
+  /**
+   * @since 0.7.0
+   */
+  readonly run: (r: Route) => O.Option<[A, Route]>
+  constructor(run: (r: Route) => O.Option<[A, Route]>) {
+    this.run = run
+  }
   /**
    * @since 0.4.0
    */

@@ -26,7 +26,18 @@ export class Route {
    * @since 0.4.0
    */
   static empty = new Route([], {})
-  constructor(readonly parts: Array<string>, readonly query: Query) {}
+  /**
+   * @since 0.7.0
+   */
+  readonly parts: Array<string>
+  /**
+   * @since 0.7.0
+   */
+  readonly query: Query
+  constructor(parts: Array<string>, query: Query) {
+    this.parts = parts
+    this.query = query
+  }
   /**
    * @since 0.4.0
    */
