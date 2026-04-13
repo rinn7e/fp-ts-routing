@@ -23,8 +23,6 @@ import {
   zero
 } from './parser'
 
-import type { RowLacks } from './helpers'
-
 // --- Re-exports
 export * from './route'
 
